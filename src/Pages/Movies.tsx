@@ -1,33 +1,30 @@
-import { useEffect,useState } from "react";
+import { SetStateAction, useEffect, useState } from "react";
 import MoviesList from "../Components/MoviesList";
 import { useAppDispatch, useAppSelector } from "../Redux";
 import { fetchMovies } from "../features/movieSlice";
 import { Swiper, SwiperSlide } from "swiper/react";
-import "swiper/css";
-import "swiper/css/pagination";
 import { Pagination, Navigation } from "swiper";
-import {TMovie} from '../helpers/types/typesMovie'
+import { TMovie } from "../helpers/types/typesMovie";
 
-interface IMovie {
-  clicked: TMovie
-}
+
 
 const Movies = () => {
   const movies = useAppSelector((state) => state.movie.movies);
   const dispatch = useAppDispatch();
-  const [clicked, setClicked] = useState<IMovie>()
+  const [clicked, setClicked] = useState<TMovie>();
 
-  const clickedMovie = (movie:any) => {
-    setClicked(movie)
-  }
+  const clickedMovie = (movie: SetStateAction<TMovie | undefined>) => {
+    setClicked(movie);
+  };
 
   useEffect(() => {
     dispatch(fetchMovies());
   }, []);
-  return (
-    <div className="">
-      <MoviesList movie={clicked ? clicked : movies[0]}/>
 
+
+  return (
+    <div>
+      <MoviesList movie={clicked ? clicked : movies[0]} />
       <Swiper
         slidesPerView={10}
         spaceBetween={20}
@@ -39,17 +36,16 @@ const Movies = () => {
         }}
         navigation={true}
         modules={[Pagination, Navigation]}
-        className="absolute h-screen"
+        className="absolute h-screen mySwiper"
       >
-        {movies?.map((movie) => (
-
+        {movies?.map((movie:TMovie) => (
           <SwiperSlide className="px-8 " key={movie.id}>
             <img
               className="border-2 absolute bottom-8 opacity-80"
               src={"https://image.tmdb.org/t/p/w500" + movie.poster_path}
               alt="movie.poster_path"
               onClick={() => clickedMovie(movie)}
-              />
+            />
           </SwiperSlide>
         ))}
       </Swiper>

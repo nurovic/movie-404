@@ -2,6 +2,7 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { TMovie } from '../helpers/types/typesMovie'
 
 import axios from 'axios'
+import { AppDispatch } from "../Redux";
 
 
 interface IMovieSchema {
@@ -23,10 +24,9 @@ export const movieSlice = createSlice({
   },
 });
 
-export const fetchMovies = () => async (dispatch: any) => {
-  console.log(process.env)
+export const fetchMovies = () => async (dispatch: AppDispatch) => {
   try {
-    const res = await axios.get(`https://api.themoviedb.org/3/movie/now_playing?api_key=${process.env.REACT_APP_API}&language=en-US&page=1`);
+    const res = await axios.get(`https://api.themoviedb.org/3/movie/now_playing?api_key=${process.env.REACT_APP_API}&language=en-US&page=5`);
     dispatch(movies(res.data.results))
 
   } catch (error) {
