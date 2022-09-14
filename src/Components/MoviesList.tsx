@@ -17,7 +17,7 @@ const MoviesList = ({movie}:any) => {
         <h1 className='flex justify-center'>ad</h1>
         </div>
           <img
-            className="w-screen  opacity-60"
+            className="object-cover w-screen h-screen opacity-60"
             src={"https://image.tmdb.org/t/p/w500" + movie.backdrop_path}
             alt=""
           />

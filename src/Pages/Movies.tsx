@@ -29,7 +29,7 @@ const Movies = () => {
       <MoviesList movie={clicked ? clicked : movies[0]}/>
 
       <Swiper
-        slidesPerView={8}
+        slidesPerView={10}
         spaceBetween={20}
         slidesPerGroup={4}
         loop={true}
@@ -45,7 +45,7 @@ const Movies = () => {
 
           <SwiperSlide className="px-8 " key={movie.id}>
             <img
-              className="border-2 absolute bottom-4 opacity-70"
+              className="border-2 absolute bottom-8 opacity-80"
               src={"https://image.tmdb.org/t/p/w500" + movie.poster_path}
               alt="movie.poster_path"
               onClick={() => clickedMovie(movie)}
