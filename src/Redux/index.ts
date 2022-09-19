@@ -2,11 +2,13 @@ import { configureStore } from "@reduxjs/toolkit";
 import { TypedUseSelectorHook, useDispatch, useSelector } from "react-redux";
 import userSlice from '../features/userSlice'
 import movieSlice from '../features/movieSlice'
+import tvSeriesSlice from '../features/tvSeriesSlice'
 
 const store = configureStore({
     reducer: {
         user: userSlice,
-        movie: movieSlice
+        movie: movieSlice,
+        tv: tvSeriesSlice,
 
     },
 });
