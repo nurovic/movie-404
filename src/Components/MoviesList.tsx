@@ -13,6 +13,7 @@ const MoviesList = ({movie}:IMovieList) => {
       {movie && (
         <>
         <div className='h-96 w-1/2 ml-24 text-white mt-12 absolute z-10'>
+        <h1 className='font-bold text-2xl'> {movie.name}</h1>
         <h1 className='flex justify-center text-5xl font-bold mb-4'>{movie.original_title}</h1>
         <p className='flex justify-center text-xl mb-6'>{movie.overview}</p>
         <button className='text-xl font-bold border rounded-lg p-2' >Detail...</button>
