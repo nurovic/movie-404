@@ -17,11 +17,11 @@ const Movies = () => {
 
   const clickedMovie = (movie: SetStateAction<TMovie |undefined>) => {
       setClicked(movie)
-      dispatch(fetchTvId(movie));
-
+      dispatch(fetchTvId(movie || movies[0]));
     };
+    
     useEffect(() => {
-        dispatch(fetchTvSeries());
+      dispatch(fetchTvSeries())
 
   }, []);
 
@@ -42,8 +42,9 @@ const Movies = () => {
         modules={[Pagination, Navigation]}
         className="top-20 h-96 mySwiper"
       >
-        {tvId.map((movie:TtvId) => (
+        {tvId?.map((movie:TtvId) => (
           <SwiperSlide  key={movie.id}>
+            <h1 className="text-white absolute right-20 w-56  bottom-16 h-32 t-8"> {movie.name} </h1>
             <img
               className="border-2 rounded absolute right-20 w-56 h-32 object-cover bottom-8 h-32 opacity-80"
               src={"https://image.tmdb.org/t/p/w500" + movie.poster_path}

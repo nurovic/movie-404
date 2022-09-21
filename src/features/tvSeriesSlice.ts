@@ -38,7 +38,6 @@ export const fetchTvSeries = () => async (dispatch: AppDispatch) => {
   }
 };
 export const fetchTvId = ({id: id}: any) => async (dispatch: AppDispatch) => {
-  console.log(id)
   try {
     const res = await axios.get(`https://api.themoviedb.org/3/tv/${id}?api_key=${process.env.REACT_APP_API}&language=en-US`);
     dispatch(TvSeriesId(res.data.seasons))
